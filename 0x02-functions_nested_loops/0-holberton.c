@@ -1,13 +1,33 @@
-#include <unistd.h>
+#include"holberton.h"
 
 /**
- * _putchar - writes the character c to stdout
- * @c: The character to print
+ * main - Entry point
  *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
- */
-int _putchar(char c)
+ * Description: prints Holberton, will be using putchar
+ *
+ * Return: Always 0 (Success)
+*/
+
+int main(void)
 {
-	return (write(1, &c, 1));
+	/**
+	 * we declare our str char array of size 10
+	 * and an int ch which is 0
+	*/
+	char str[10] = "Holberton";
+	int ch = 0;
+
+	/**
+	 * print each character from our str array
+	 * which is contains 8 characters
+	*/
+	while (ch < 9)
+	{
+		_putchar(str[ch]);
+		ch++;
+	}
+
+	/*place a new line after looping through our charcters*/
+	_putchar('\n');
+	return (0);
 }
