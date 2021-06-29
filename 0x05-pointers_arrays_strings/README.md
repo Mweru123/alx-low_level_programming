@@ -1,1 +1,1 @@
-Pointers in C
+The C pointers
