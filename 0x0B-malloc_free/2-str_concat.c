@@ -1,89 +1,39 @@
+#include "holberton.h"
+#include <stdio.h>
 #include <stdlib.h>
-#include <stdio.h>
-#include "holberton.h"
 
 /**
- * str_concat - concatenates two strings
- * @s1: string 1
- * @s2: string 2
- * Return: pointer to concatenated string
+ * *str_concat - function that concatenates two strings.
+ * @s1: parameter used.
+ * @s2: parameter used.
+ * Return: Always 0.
  */
-
 char *str_concat(char *s1, char *s2)
 {
-	char *concat;
-	int len1 = 0, len2 = 0, i = 0, j = 0;
+	int x;
+	int y;
+	char *ptr;
+	int index;
+	int index2;
 
 	if (s1 == NULL)
 		s1 = "";
 	if (s2 == NULL)
 		s2 = "";
-	while (*(s1 + i))
-		len1++, i++;
-	while (*(s2 + j))
-		len2++, j++;
-	len2++; /* add null terminator to length */
-
-	concat = malloc(sizeof(char) * (len1 + len2)); /*alloc memory*/
-
-	if (concat == NULL) /* validate memory */
+	for (x = 0; s1[x] != '\0'; x++)
+		;
+	for (y = 0; s2[y] != '\0'; y++)
+		;
+	ptr = malloc(sizeof(char) * (x + y + 1));
+	if (ptr == NULL)
 		return (NULL);
-
-	i = 0, j = 0;
-	while (i < len1) /* concatenate */
+	for (index = 0; s1[index] != '\0'; index++)
+		ptr[index] = s1[index];
+		;
+	for (index2 = 0; s2[index2] != '\0'; index++, index2++)
 	{
-		*(concat + i) = *(s1 + i);
-		i++;
+		ptr[index] = s2[index2];
 	}
-	while (j < len2)
-	{
-		*(concat + i) = *(s2 + j);
-		i++, j++;
-	}
-
-	return (concat);
-}#include <stdlib.h>
-#include <stdio.h>
-#include "holberton.h"
-
-/**
- * str_concat - concatenates two strings
- * @s1: string 1
- * @s2: string 2
- * Return: pointer to concatenated string
- */
-
-char *str_concat(char *s1, char *s2)
-{
-	char *concat;
-	int len1 = 0, len2 = 0, i = 0, j = 0;
-
-	if (s1 == NULL)
-		s1 = "";
-	if (s2 == NULL)
-		s2 = "";
-	while (*(s1 + i))
-		len1++, i++;
-	while (*(s2 + j))
-		len2++, j++;
-	len2++; /* add null terminator to length */
-
-	concat = malloc(sizeof(char) * (len1 + len2)); /*alloc memory*/
-
-	if (concat == NULL) /* validate memory */
-		return (NULL);
-
-	i = 0, j = 0;
-	while (i < len1) /* concatenate */
-	{
-		*(concat + i) = *(s1 + i);
-		i++;
-	}
-	while (j < len2)
-	{
-		*(concat + i) = *(s2 + j);
-		i++, j++;
-	}
-
-	return (concat);
+	ptr[index] = '\0';
+	return (ptr);
 }
