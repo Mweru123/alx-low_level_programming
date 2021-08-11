@@ -1,27 +1,51 @@
 #include "holberton.h"
+#include <stdio.h>
 
 /**
- * rot13 - encodes a string into rot13
- * @s: string to encode
- *
- * Return: address of s
+ * print_buffer - Prints a buffer
+ * @b: char
+ * @size: int
+ * Return:void
  */
-char *rot13(char *s)
+void print_buffer(char *b, int size)
 {
-	int i, j;
-	char a[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	char b[] = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
+	int x, i;
 
-	for (i = 0; *(s + i); i++)
+	for (x = 0; x < size; x += 10)
 	{
-		for (j = 0; j < 52; j++)
+		printf("%08x: ", x);
+
+		for (i = 0; i < 10; i++)
 		{
-			if (a[j] == *(s + i))
-			{
-				*(s + i) = b[j];
-				break;
-			}
+			if ((i + x) >= size)
+				printf("  ");
+
+			else
+				printf("%02x", *(b + i + x));
+
+			if ((i % 2) != 0 && i != 0)
+				printf(" ");
 		}
+
+		for (i = 0; i < 10; i++)
+		{
+			if ((i + x) >= size)
+				break;
+
+			else if (*(b + i + x) >= 31 &&
+				 *(b + i + x) <= 126)
+				printf("%c", *(b + i + x));
+
+			else
+				printf(".");
+		}
+
+		if (x >= size)
+			continue;
+
+		printf("\n");
 	}
-	return (s);
+
+	if (size <= 0)
+		printf("\n");
 }
